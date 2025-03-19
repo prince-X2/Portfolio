@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Portfolio website</title>
+    <title>Responsive Portfolio Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preload" href="assets/princeimg.jpg" as="image">
+    <link rel="preload" href="assets/Professional_Modern_CV_Resume.pdf" as="document">
 </head>
 <body>
     <div class="hero-header">
         <div class="wrapper">
             <header>
                 <div class="logo">
-                    <i class= "fa-solid fa-p"></i>
+                    <i class="fa-solid fa-p"></i>
                     <div class="logo-text">PRINCE</div>
-
                 </div>
                 <nav>
                     <div class="togglebtn">
@@ -23,7 +24,7 @@
                         <span></span>
                     </div>
                     <ul class="navlinks">
-                        <li><a href="C:\Users\princ\OneDrive\Desktop\Portfolio\index.html">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li id="education"><a href="#">My Education</a></li>
                         <li id="projects"><a href="#">Projects</a></li>
                     </ul>
@@ -31,41 +32,39 @@
             </header>
             <div class="container">
                 <div class="hero-pic">
-                    <img src="assets/princeimg.jpg" alt="profile pic">
+                    <img src="assets/princeimg.jpg" alt="Prince Anbu Chelvan - Profile Picture">
                 </div>
                 <div class="hero-text">
                     <h5>Hi I'm <span class="input">Frontend-developer</span></h5>
                     <h1>Prince Anbu Chelvan</h1>
-                    <p>Recent computer science graduate with a strong foundation in web development technologies . Seeking an entry-level position where I can use my skills to develop and maintain high-quality websites and to contribute to a team and make a positive impact on the company.</p>
-                   
+                    <p>Recent computer science graduate with a strong foundation in web development technologies. Seeking an entry-level position where I can use my skills to develop and maintain high-quality websites.</p>
                     <div class="btn-group">
-                        <a href="assets/Professional Modern CV Resume.final.pdf" download="" class="btn active">Download CV</a>
-                        <a href="tel:+91 9677365616" class="btn">Contact</a>
+                        <a href="assets/Professional_Modern_CV_Resume.pdf" download class="btn active">Download CV</a>
+                        <a href="tel:+919677365616" class="btn">Contact</a>
                     </div>
                     <div class="social">
                         <a href="https://github.com/prince-X2"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BkTVJ2tCWT1ei9mKxNNqOUQ%3D%3D"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/princxx.___?igsh=MW44aGZwNHQyNGZhcg%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/share/14w9JigR6G/?mibextid=wwXIfr"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="YOUR_LINKEDIN_PROFILE"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/princxx.___"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/14w9JigR6G/"><i class="fa-brands fa-facebook"></i></a>
                     </div>
                     <section id="projects-section" class="projects hidden">
                         <h2>My Projects</h2>
                         <div class="project-list">
                             <div class="project">
-                                <h3>AI DRIVEN VOLUNTEER MANAGEMENT AND PROGRESS TRACKING SYSTEM</h3>
-                                <p>The project employs Spring Boot for the backend, React.js for the frontend, JWT for authentication, and Google AI API for intelligent automation.</p>
+                                <h3>AI Driven Volunteer Management System</h3>
+                                <p>Utilizing Spring Boot, React.js, JWT authentication, and Google AI API.</p>
                             </div>
                             <div class="project">
                                 <h3>E-commerce Website</h3>
-                                <p>A three-page frontend project built using REACT JS. Showcases products for customer purchases.</p>
+                                <p>Frontend project built using REACT JS showcasing products.</p>
                             </div>
                             <div class="project">
                                 <h3>TO-DO List</h3>
-                                <p>A Web application made with HTML, CSS, JS to list tasks to complete them.</p>
+                                <p>A Web application made with HTML, CSS, JS for task management.</p>
                             </div>
                         </div>
                     </section>
-                    
                     <section id="education-section" class="education hidden">
                         <h2>My Education</h2>
                         <div class="education-list">
@@ -83,62 +82,43 @@
                             </div>
                         </div>
                     </section>
-                    </div>
-    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
     <script>
-        var togglebtn=document.querySelector(".togglebtn");
-        var nav=document.querySelector(".navlinks");
-        var links=document.querySelector(".navlinks li");
-
-        togglebtn.addEventListener("click", function(){
-            this.classList.toggle("click");
-            nav.classList.toggle("open");
-        })
-        var typed=new Typed(".input",{
-            strings:["Frontend Developer", "Web Developer", "UI/UX Designer"],
-            typeSpeed: 70,
-            backSpeed:55,
-            loop:true
-        })
         document.addEventListener("DOMContentLoaded", function () {
-    const projectLink = document.querySelector("nav ul li:nth-child(4) a"); // Target "Projects" menu item
-    const projectsSection = document.querySelector("#projects-section");
+            const togglebtn = document.querySelector(".togglebtn");
+            const nav = document.querySelector(".navlinks");
+            
+            togglebtn.addEventListener("click", function () {
+                this.classList.toggle("click");
+                nav.classList.toggle("open");
+            });
 
-    projectLink.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default navigation
-        projectsSection.style.display = projectsSection.style.display === "block" ? "none" : "block";
-    });
-});
+            new Typed(".input", {
+                strings: ["Frontend Developer", "Web Developer", "UI/UX Designer"],
+                typeSpeed: 70,
+                backSpeed: 55,
+                loop: true
+            });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const projectLink = document.querySelector("#projects a");
-    const educationLink = document.querySelector("#education a");
-    const projectsSection = document.querySelector("#projects-section");
-    const educationSection = document.querySelector("#education-section");
+            const projectLink = document.querySelector("#projects a");
+            const educationLink = document.querySelector("#education a");
+            const projectsSection = document.querySelector("#projects-section");
+            const educationSection = document.querySelector("#education-section");
+            
+            projectLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                projectsSection.classList.toggle("hidden");
+                educationSection.classList.add("hidden");
+            });
 
-    function toggleSection(section) {
-        section.classList.toggle("hidden");
-    }
-
-    projectLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        toggleSection(projectsSection);
-    });
-
-    educationLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        toggleSection(educationSection);
-    });
-});
-
-
-
-
-
-
+            educationLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                educationSection.classList.toggle("hidden");
+                projectsSection.classList.add("hidden");
+            });
+        });
     </script>
-    
-</body>
-</html>
