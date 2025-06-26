@@ -80,6 +80,11 @@ nav .navlinks li{
 nav .navlinks li a{
      color:#e5e5e5;
      margin-right: 2.5rem;
+     transition: ease-in-out 0.3s;
+}
+nav .navlinks li a:hover{
+    color:#007ced;
+    text-decoration: none;
 }
 .container {
     display: flex;
@@ -137,10 +142,18 @@ nav .navlinks li a{
     border-radius: 30px;
     border:2px solid #e5e5e5;
     box-shadow:  0 10px 10px -8px rgb(0 0 0 / 78%);
+    transition: ease-in-out 0.3s;
 }
+.btn-group .btn:hover{
+    background-color: #007ced;
+    color:#fff;
+    border-color: #007ced;
+}
+
 .btn.active{
     border-color: #007ced;
 }
+
 .hero-text .social i{
     color: #e5e5e5;
     font-size: 18px;
