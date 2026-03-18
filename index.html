@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="preload" href="assets/princeimg.jpg" as="image">
@@ -27,6 +30,8 @@
                         <li><a href="index.html">Home</a></li>
                         <li id="education"><a href="#">My Education</a></li>
                         <li id="projects"><a href="#">Projects</a></li>
+                        <li id="experience"><a href="#">Experience</a></li>
+                        <li id="hire"><a href="#">Hire Me!</a></li>
                     </ul>
                 </nav>
             </header>
@@ -52,18 +57,53 @@
                         <h2>My Projects</h2>
                         <div class="project-list">
                             <div class="project">
-                                <h3>Complete Amazon Clone Using React.js</h3>
-                                <p>• A fully functional e-commerce application built with React.js, featuring user authentication, product listings, and a shopping cart.</p>
+                                <h3><a href="https://annai-catering.vercel.app/">FREELANCE PROJECT USING React.js & E-mail js</a></h3>
+                                <p>• Designed and developed a responsive business landing page for Annai Catering Service as afreelance project, focusing on clean UI, mobile compatibility, and customer engagement.</p>
                             </div>
                             <div class="project">
-                                <h3>90'S Fun Games Using JavaScript</h3>
-                                <p>• A collection of 90's fun games built with JavaScript, Our Favourite Childhood Games TIC TAC TOE, ROCK PAPER SCISSORS showcasing interactive gameplay and engaging user interfaces.</p>
+                                <h3><a href="https://budger-planner.vercel.app/">Budget Planner Apk USING Ionic Capacitor</a></h3>
+                                <p>• A fully functional e-commerce application built with React.js featuring user authentication,product listings, and a shopping cart.</p>
                             </div>
                             <div class="project">
-                                <h3>TO-DO List Using JavaScript</h3>
-                                <p>• A Web application made with HTML, CSS, JS for task management.</p>
+                                <h3><a href="https://kaadugal.netlify.app/landing">Complete Amazon Clone Using React.js</a></h3>
+                                <p>• A fully functional e-commerce application built with React.js featuring user authentication, product listings, and a shopping cart.</p>
                             </div>
                         </div>
+                    </section>
+                    <section id="experience-section" class="experience hidden">
+                        <h2>My Experience</h2>
+                        <div class="experience-list">
+                            <div class="experience-item">
+                                <h3>Frontend Developer Intern — SoftTechSolutions</h3>
+                                <p>April 2025 - July 2025</p>
+                                <p>Completed a 4-month Frontend Development Internship at SoftTechSolutions, contributing to the development of responsive and user-friendly web interfaces.</p>
+                            </div>
+                            <div class="experience-item">
+                                <h3>Software Developer Intern — Madura Solutions</h3>
+                                <p>November 2025 - February 2026</p>
+                                <p>Completed a 4-month internship, gaining hands-on experience in frontend development, building responsive UI components, and improving user experience.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="hire-section" class="hire hidden">
+                        <h2>Hire Me!</h2>
+                        <form class="hire-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="company-name">Company's Name</label>
+                                    <input type="text" id="company-name" name="company-name" placeholder="Enter your company name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company-contact">Company's Contact</label>
+                                    <input type="text" id="company-contact" name="company-contact" placeholder="Contact number or email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="company-description">Description</label>
+                                <textarea id="company-description" name="company-description" placeholder="Send a Description about the Role and Position" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn active">Send</button>
+                        </form>
                     </section>
                     <section id="education-section" class="education hidden">
                         <h2>My Education</h2>
@@ -106,19 +146,43 @@
 
             const projectLink = document.querySelector("#projects a");
             const educationLink = document.querySelector("#education a");
+            const experienceLink = document.querySelector("#experience a");
+            const hireLink = document.querySelector("#hire a");
             const projectsSection = document.querySelector("#projects-section");
             const educationSection = document.querySelector("#education-section");
+            const experienceSection = document.querySelector("#experience-section");
+            const hireSection = document.querySelector("#hire-section");
             
             projectLink.addEventListener("click", function (event) {
                 event.preventDefault();
                 projectsSection.classList.toggle("hidden");
                 educationSection.classList.add("hidden");
+                experienceSection.classList.add("hidden");
+                hireSection.classList.add("hidden");
             });
 
             educationLink.addEventListener("click", function (event) {
                 event.preventDefault();
                 educationSection.classList.toggle("hidden");
                 projectsSection.classList.add("hidden");
+                experienceSection.classList.add("hidden");
+                hireSection.classList.add("hidden");
+            });
+
+            experienceLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                experienceSection.classList.toggle("hidden");
+                projectsSection.classList.add("hidden");
+                educationSection.classList.add("hidden");
+                hireSection.classList.add("hidden");
+            });
+
+            hireLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                hireSection.classList.toggle("hidden");
+                projectsSection.classList.add("hidden");
+                educationSection.classList.add("hidden");
+                experienceSection.classList.add("hidden");
             });
         });
     </script>
