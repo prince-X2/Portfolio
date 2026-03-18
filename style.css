@@ -127,6 +127,23 @@ nav .navlinks li a::after{
 nav .navlinks li a:hover::after{
     width: 100%;
 }
+nav .navlinks li a.hire-cta{
+    color: #101010;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #00ffaa, #007ced);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.15);
+    margin-right: 0;
+}
+nav .navlinks li a.hire-cta::after{
+    display: none;
+}
+nav .navlinks li a.hire-cta:hover{
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 26px rgba(0,0,0,0.45);
+}
 .container {
     display: flex;
     justify-content: space-around;
@@ -263,6 +280,11 @@ nav .navlinks li a:hover::after{
         display: block;
         margin-bottom: 15px;
         text-align: center;
+    }
+    nav .navlinks li a.hire-cta{
+        display: inline-block;
+        margin: 10px auto 0;
+        padding: 10px 20px;
     }
     nav .navlinks.open{
         right:0;
@@ -479,6 +501,36 @@ p {
     transform: translateY(-2px);
     background: linear-gradient(135deg, #007ced, #00ffaa);
     border-color: transparent;
+}
+
+.form-status{
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #e5e5e5;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.form-status.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+.form-status.status-success{
+    border-color: rgb(255, 255, 255);
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(0,255,170,0.25), rgba(0,124,237,0.12));
+    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
+}
+.form-status.status-error{
+    border-color: rgba(255,98,98,0.45);
+    color: #2b0b0b;
+    background: linear-gradient(135deg, rgba(255,98,98,0.22), rgba(255,140,0,0.12));
+    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
 }
 
 @media(max-width:768px)

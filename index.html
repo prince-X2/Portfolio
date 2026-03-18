@@ -31,7 +31,7 @@
                         <li id="education"><a href="#">My Education</a></li>
                         <li id="projects"><a href="#">Projects</a></li>
                         <li id="experience"><a href="#">Experience</a></li>
-                        <li id="hire"><a href="#">Hire Me!</a></li>
+                        <li id="hire"><a href="#" class="hire-cta">Hire Me!</a></li>
                     </ul>
                 </nav>
             </header>
@@ -103,6 +103,7 @@
                                 <textarea id="company-description" name="company-description" placeholder="Send a Description about the Role and Position" rows="5" required></textarea>
                             </div>
                             <button type="submit" class="btn active">Send</button>
+                            <p class="form-status" role="status" aria-live="polite"></p>
                         </form>
                     </section>
                     <section id="education-section" class="education hidden">
@@ -131,12 +132,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
     <script>
         firebase.initializeApp({
-             apiKey: "AIzaSyDpNG0rlKeO27QeguVVbdwyjgw32q2Jhy0",
-             authDomain: "portfolio-67532.firebaseapp.com",
-             projectId: "portfolio-67532",
-             storageBucket: "portfolio-67532.firebasestorage.app",
-             messagingSenderId: "185576790802",
-             appId: "1:185576790802:web:2ebb6f7daa78746135f1cb"
+   apiKey: "AIzaSyBOdLnqAMEQhrCOjxNr63MsbXc8vGggm-Q",
+    authDomain: "prince-portfolio-c00de.firebaseapp.com",
+    projectId: "prince-portfolio-c00de",
+    storageBucket: "prince-portfolio-c00de.firebasestorage.app",
+    messagingSenderId: "421157355837",
+    appId: "1:421157355837:web:ec5549413208c0e1da0554"
 
         });
 
@@ -167,6 +168,7 @@
             const experienceSection = document.querySelector("#experience-section");
             const hireSection = document.querySelector("#hire-section");
             const hireForm = document.querySelector(".hire-form");
+            const hireStatus = document.querySelector(".form-status");
             const companyNameInput = document.querySelector("#company-name");
             const companyContactInput = document.querySelector("#company-contact");
             const companyDescriptionInput = document.querySelector("#company-description");
@@ -211,11 +213,16 @@
                 const companyDescription = companyDescriptionInput.value.trim();
 
                 if (!companyName || !companyContact || !companyDescription) {
-                    alert("Please fill out all fields before submitting.");
+                    hireStatus.textContent = "Please fill out all fields before submitting.";
+                    hireStatus.classList.remove("status-success");
+                    hireStatus.classList.add("status-error", "show");
                     return;
                 }
 
                 try {
+                    hireStatus.textContent = "Sending...";
+                    hireStatus.classList.remove("status-success", "status-error");
+                    hireStatus.classList.add("show");
                     await messagesRef.add({
                         companyName,
                         companyContact,
@@ -224,10 +231,14 @@
                     });
 
                     hireForm.reset();
-                    alert("Thanks! Your message has been sent.");
+                    hireStatus.textContent = "Thanks! Your message has been sent.";
+                    hireStatus.classList.remove("status-error");
+                    hireStatus.classList.add("status-success", "show");
                 } catch (error) {
                     console.error("Error saving message:", error);
-                    alert("Sorry, something went wrong. Please try again.");
+                    hireStatus.textContent = `Sorry, something went wrong: ${error.message}`;
+                    hireStatus.classList.remove("status-success");
+                    hireStatus.classList.add("status-error", "show");
                 }
             });
         });
