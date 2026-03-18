@@ -126,8 +126,22 @@
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
     <script>
+        firebase.initializeApp({
+             apiKey: "AIzaSyDpNG0rlKeO27QeguVVbdwyjgw32q2Jhy0",
+             authDomain: "portfolio-67532.firebaseapp.com",
+             projectId: "portfolio-67532",
+             storageBucket: "portfolio-67532.firebasestorage.app",
+             messagingSenderId: "185576790802",
+             appId: "1:185576790802:web:2ebb6f7daa78746135f1cb"
+
+        });
+
+        const db = firebase.firestore();
+        const messagesRef = db.collection("messages");
         document.addEventListener("DOMContentLoaded", function () {
             const togglebtn = document.querySelector(".togglebtn");
             const nav = document.querySelector(".navlinks");
@@ -152,6 +166,10 @@
             const educationSection = document.querySelector("#education-section");
             const experienceSection = document.querySelector("#experience-section");
             const hireSection = document.querySelector("#hire-section");
+            const hireForm = document.querySelector(".hire-form");
+            const companyNameInput = document.querySelector("#company-name");
+            const companyContactInput = document.querySelector("#company-contact");
+            const companyDescriptionInput = document.querySelector("#company-description");
             
             projectLink.addEventListener("click", function (event) {
                 event.preventDefault();
@@ -183,6 +201,34 @@
                 projectsSection.classList.add("hidden");
                 educationSection.classList.add("hidden");
                 experienceSection.classList.add("hidden");
+            });
+
+            hireForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const companyName = companyNameInput.value.trim();
+                const companyContact = companyContactInput.value.trim();
+                const companyDescription = companyDescriptionInput.value.trim();
+
+                if (!companyName || !companyContact || !companyDescription) {
+                    alert("Please fill out all fields before submitting.");
+                    return;
+                }
+
+                try {
+                    await messagesRef.add({
+                        companyName,
+                        companyContact,
+                        companyDescription,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    hireForm.reset();
+                    alert("Thanks! Your message has been sent.");
+                } catch (error) {
+                    console.error("Error saving message:", error);
+                    alert("Sorry, something went wrong. Please try again.");
+                }
             });
         });
     </script>
