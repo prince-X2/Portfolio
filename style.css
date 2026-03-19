@@ -16,11 +16,13 @@ body{
                 radial-gradient(800px 400px at 90% 20%, rgba(0, 255, 170, 0.18), transparent 55%),
                 linear-gradient(135deg, #121212 0%, #1a1a1a 45%, #0f0f0f 100%);
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 .hero-header::before{
     content: "";
     position: absolute;
+    z-index: 0;
     inset: -20% -10% auto -10%;
     height: 60%;
     background: radial-gradient(closest-side, rgba(255,255,255,0.08), transparent 70%);
@@ -31,6 +33,7 @@ body{
 .hero-header::after{
     content: "";
     position: absolute;
+    z-index: 0;
     inset: auto -20% -30% -20%;
     height: 60%;
     background: radial-gradient(closest-side, rgba(0,124,237,0.18), transparent 70%);
@@ -43,6 +46,8 @@ body{
     max-width: 95%;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 header{
     padding: 40px 0 30px;
@@ -78,41 +83,58 @@ header{
     color:#fff;
     letter-spacing: 1px;
 }
+nav{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 1000;
+}
 nav .togglebtn{
     width: 35px;
     height: 35px;
-    position: absolute;
-    top:45px;
-    right: 3%;
+    position: relative;
     z-index: 5;
     cursor: pointer;
     display: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
 }
 nav .togglebtn span{
     display: block;
-    background-color: #007ced;
-    margin: 5px 0px;
+    background-color: #e5e5e5;
+    margin: 0;
     width:100%;
-    height:3px;
+    height:2px;
     transition: 0.3s;
     transition-property:  transform, opacity;
 
 }
 nav .navlinks{
     list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 nav .navlinks li{
     display: inline-block;
 }
 nav .navlinks li a{
      color:#e5e5e5;
-     margin-right: 2.5rem;
+     margin-right: 0;
+     padding: 6px 10px;
+     border-radius: 6px;
      transition: ease-in-out 0.3s;
      position: relative;
 }
 nav .navlinks li a:hover{
     color:#007ced;
     text-decoration: none;
+    background: rgba(0,124,237,0.1);
 }
 nav .navlinks li a::after{
     content: "";
@@ -130,9 +152,8 @@ nav .navlinks li a:hover::after{
 nav .navlinks li a.hire-cta{
     color: #101010;
     padding: 10px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #00ffaa, #007ced);
-    box-shadow: 0 10px 18px rgba(0,0,0,0.35);
+    border-radius: 8px;
+    background: #00ffaa;
     border: 1px solid rgba(255,255,255,0.15);
     margin-right: 0;
 }
@@ -141,8 +162,28 @@ nav .navlinks li a.hire-cta::after{
 }
 nav .navlinks li a.hire-cta:hover{
     color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 16px 26px rgba(0,0,0,0.45);
+    background: #00e0a0;
+}
+nav .navlinks li a.active{
+    color: #ffffff;
+    background: rgba(0,124,237,0.2);
+}
+.nav-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 8, 12, 0.45);
+    backdrop-filter: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1900;
+}
+body.nav-open .nav-backdrop{
+    opacity: 1;
+    pointer-events: auto;
+}
+body.nav-open{
+    overflow: hidden;
 }
 .container {
     display: flex;
@@ -150,7 +191,7 @@ nav .navlinks li a.hire-cta:hover{
     align-items: center;
     padding-top:4rem;
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 .container .hero-pic{
     width: 400px;
@@ -161,6 +202,8 @@ nav .navlinks li a.hire-cta:hover{
     box-shadow: 0 20px 45px rgba(0,0,0,0.55);
     background: linear-gradient(135deg, rgba(0,124,237,0.25), rgba(0,255,170,0.1));
     animation: float 6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
 }
 .hero-pic img{
     height: 100%;
@@ -237,8 +280,23 @@ nav .navlinks li a.hire-cta:hover{
 /* Respnosiv design & displaying navbar for small screen */
 @media(max-width:930px)
 {
+    header{
+        padding: 24px 0 18px;
+    }
     nav .togglebtn{
-        display: initial;
+        display: inline-flex;
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        z-index: 2100;
     }
     /* for toggle button**/
     .click {
@@ -246,10 +304,14 @@ nav .navlinks li a.hire-cta:hover{
     }
     .click span{
         position: absolute;
-        margin-top:12px
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin: 0;
+        transform-origin: center;
     }
     .click span:first-child{
-        transform: rotate(-40deg);
+        transform: translateY(-50%) rotate(-45deg);
     }
     .click span:nth-child(2)
     {
@@ -257,34 +319,41 @@ nav .navlinks li a.hire-cta:hover{
         margin:0;
     }
     .click span:last-child{
-        transform: rotate(45deg);
-        top:0;
+        transform: translateY(-50%) rotate(45deg);
     }
     nav .navlinks{
-        position: absolute;
-        top:110px;
+        position: fixed;
+        top:0;
         right:-100%;
         bottom: 0;
-        width: 60%;
-        height: 100vh;
-        background-color: #222;
-        z-index: 3;
-        box-shadow: 5px 13px 30px rgba(0,0,0,0.1);
+        width: min(82vw, 340px);
+        height: 100svh;
+        background-color: #151515;
+        z-index: 2000;
+        box-shadow: none;
         transition: 0.5s;
-        padding: 25px 0px;
+        padding: 96px 18px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        border-radius: 0;
+        border-left: 1px solid rgba(255,255,255,0.08);
     }
     nav .navlinks li{
         display: block;
     }
     nav .navlinks li a{
         display: block;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         text-align: center;
+        background: transparent;
+        border: 1px solid transparent;
     }
     nav .navlinks li a.hire-cta{
-        display: inline-block;
-        margin: 10px auto 0;
+        display: block;
+        margin: 8px 0 0;
         padding: 10px 20px;
+        text-align: center;
     }
     nav .navlinks.open{
         right:0;
@@ -554,4 +623,3 @@ p {
     0%, 100% { transform: translateY(0); opacity: 0.7; }
     50% { transform: translateY(10px); opacity: 1; }
 }
-
